@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-        /* エスケープ関数 */
+        // エスケープ関数  エスケープ処理とは、文字列の中で特殊な働きをする記号を単なる文字として認識させるための処理
         function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
         function eh($v){ echo h($v); }
         /* brタグの有効化 */
@@ -25,6 +25,10 @@
         $id = uniqid();
         /* 日時 */
         $date = date('Y/m/d H:i');
+
+        $title = '';
+
+        $review = '';
         /* テキスト */
         $text = '';
 
@@ -45,9 +49,10 @@
             $text = str_replace("\n","<br>",$text);
             /* 区切り文字を除去 */
             $text = str_replace("\t","",$text);
+            $title = str_replace("\t","",$tutle);
 
             /* 新規に登録するデータ */
-            $line = $id."\t".$date."\t".$text."\n";
+            $line = $id."\t".$date."\t".$title."\t"$review."\t".$text."\n";
 
             /* 新規データの後ろに保存済データを追加、更新 */
             $lines = $line.$lines;
@@ -57,13 +62,14 @@
         } elseif(isset($_POST['id']) && is_array($_POST['id'])) {
 
             $new = '';
+
             foreach(explode("\n",$lines) as $line){
 
                 /* データ仕様に合わない場合、次へ */
                 if( strpos($line,"\t")===false ) continue;
 
-                /* 区切り文字でデータを分離 */
-                list($id,$date,$text) = explode("\t",$line);
+                // 区切り文字でデータを分離 explodeは第一引数を境に文字列を分割して配列化する
+                list($id,$date,$title.$review,$text) = explode("\t",$line);
 
                 /* IDが指定されていた時、除外 */
                 if(in_array($id,$_POST['id'])) continue;
@@ -71,6 +77,8 @@
                 /* 新規保存データを作成 */
                 $new .= $line."\n";
             }
+            
+            //ファイルに書き込み
             file_put_contents(SAVE_NAME, $new);
             /* 新規保存データで読み込んだ変数を更新 */
             $lines = $new;
@@ -86,11 +94,13 @@
             if( strpos($line,"\t")===false ) continue;
 
             /* 区切り文字でデータを分離 */
-            list($id,$date,$text) = explode("\t",$line);
+            list($id,$date,$title,$review,$text) = explode("\t",$line);
 
             $DATA[] = array(
                 'id'=>$id,
                 'date'=>$date,
+                'title'=>$title,
+                'review'=>$review,
                 'text'=>$text
             );
         }
@@ -115,7 +125,7 @@
     <form method="post">
     <dl>
         <dt><span>タイトル</span></dt>
-        <dd><input type="text" name="name" class="name"></dd>
+        <dd><input type="text" name="title" class="title"></dd>
         <dt>今日の気分</dt>
         <dd>
             <select name="review" size="1">
