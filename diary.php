@@ -52,7 +52,7 @@
             $title = str_replace("\t","",$tutle);
 
             /* 新規に登録するデータ */
-            $line = $id."\t".$date."\t".$title."\t"$review."\t".$text."\n";
+            $line = $id."\t".$date."\t".$title."\t".$review."\t".$text."\n";
 
             /* 新規データの後ろに保存済データを追加、更新 */
             $lines = $line.$lines;
@@ -69,7 +69,7 @@
                 if( strpos($line,"\t")===false ) continue;
 
                 // 区切り文字でデータを分離 explodeは第一引数を境に文字列を分割して配列化する
-                list($id,$date,$title.$review,$text) = explode("\t",$line);
+                list($id,$date,$title,$review,$text) = explode("\t",$line);
 
                 /* IDが指定されていた時、除外 */
                 if(in_array($id,$_POST['id'])) continue;
