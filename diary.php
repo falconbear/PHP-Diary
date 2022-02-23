@@ -9,11 +9,14 @@
 <body>
     <?php
         // エスケープ関数  エスケープ処理とは、文字列の中で特殊な働きをする記号を単なる文字として認識させるための処理
-        function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
-        function eh($v){ echo h($v); }
+        function escape($v){ 
+            return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
+        }
+        function echoEscape($v){ 
+            echo escape($v); 
+        }
         /* brタグの有効化 */
-        function br2tag($v){
-
+        function brToTag($v){
             /* エスケープされた<br>を戻す */
             return str_replace('&lt;br&gt;','<br>',$v);
         }
@@ -38,8 +41,10 @@
         $lines = file_get_contents(SAVE_NAME);
 
         /* $_POST の中にPOST入力が入る */
-        if (!empty($_POST['text'])) {
+        if (!empty($_POST['title']) && !empty($_POST['review']) && !empty($_POST['text'])) {
 
+            $title = $_POST['title'];
+            $review = $_POST['review'];
             $text = $_POST['text'];
 
             /* 改行コードの統一 */
@@ -49,7 +54,7 @@
             $text = str_replace("\n","<br>",$text);
             /* 区切り文字を除去 */
             $text = str_replace("\t","",$text);
-            $title = str_replace("\t","",$tutle);
+            $title = str_replace("\t","",$title);
 
             /* 新規に登録するデータ */
             $line = $id."\t".$date."\t".$title."\t".$review."\t".$text."\n";
@@ -112,9 +117,11 @@
         <table>
             <?php foreach($DATA as $d): ?>
             <tr>
-                <td><?php eh($d['date']); ?></td>
-                <td><?php echo br2tag( h($d['text']) ); ?></td>
-                <td><label><input type="checkbox" name="id[]" value="<?php eh($d['id']); ?>">削除</label></td>
+                <td><?php echoEscape($d['date']); ?></td>
+                <td><?php echoEscape($d['title']); ?></td>
+                <td><?php echoEscape($d['review']); ?></td>
+                <td><?php echo brToTag( escape($d['text']) ); ?></td>
+                <td><label><input type="checkbox" name="id[]" value="<?php echoEscape($d['id']); ?>">削除</label></td>
             </tr>
             <?php endforeach; ?>
         </table>
@@ -124,21 +131,21 @@
 
     <form method="post">
     <dl>
-        <dt><span>タイトル</span></dt>
+        <dt>タイトル</dt>
         <dd><input type="text" name="title" class="title"></dd>
         <dt>今日の気分</dt>
         <dd>
             <select name="review" size="1">
                 <option hidden>下記より選んでください</option>
-                <option value="bad">⭐︎</option>
-                <option value="soso">⭐︎⭐︎</option>
-                <option value="good">⭐︎⭐︎⭐︎</option>
+                <option value="⭐︎">⭐︎</option>
+                <option value="⭐︎⭐︎">⭐︎⭐︎</option>
+                <option value="⭐︎⭐︎⭐︎">⭐︎⭐︎⭐︎</option>
             </select>
         </dd>
         <dt>本文</dt>
         <dd><textarea name="text" cols="40" rows="10" class="textarea"></textarea></dd>
     </dl>
-    <a href="scheduler.php"><input type="submit" value="記録"></a>
+    <input type="submit" value="記録">
     </form>
 </body>
 </html>
