@@ -113,8 +113,22 @@
     <?php endif; ?>
 
     <form method="post">
-    <textarea name="text"></textarea>
-    <input type="submit" value="記録">
+    <dl>
+        <dt><span>タイトル</span></dt>
+        <dd><input type="text" name="name" class="name"></dd>
+        <dt>今日の気分</dt>
+        <dd>
+            <select name="review" size="1">
+                <option hidden>下記より選んでください</option>
+                <option value="bad">⭐︎</option>
+                <option value="soso">⭐︎⭐︎</option>
+                <option value="good">⭐︎⭐︎⭐︎</option>
+            </select>
+        </dd>
+        <dt>本文</dt>
+        <dd><textarea name="text" cols="40" rows="10" class="textarea"></textarea></dd>
+    </dl>
+    <a href="scheduler.php"><input type="submit" value="記録"></a>
     </form>
 </body>
 </html>

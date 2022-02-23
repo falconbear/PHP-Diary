@@ -12,6 +12,16 @@
     <title>Calender</title>
 </head>
 <body>
+    <header>
+        <nav class="navBer">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#aboutMe">About Me</a></li>
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
     <h1 text_aline="center">カレンダー</h1>
     <?php
     // タイムゾーンを設定
@@ -77,7 +87,7 @@
         } else {
             $week .= '<td>' . $day;
         }
-        $week .= '<br><p id="memo"><a href="diary.php">日記をつける</a></p></td>';
+        $week .= '<br><button class="toDiary"><a href="diary.php">日記をつける</a></button><br><button class="show"><a href="diary.php">日記を見る</a></button><button class="edit"><a href="diary.php">編集</a></button></td>';
 
         // 週終わり、または、月終わりの場合
         if ($youbi % 7 == 6 || $day == $day_count) {
