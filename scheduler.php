@@ -128,7 +128,7 @@
     /* 保存データが無い時、作成 */
     if (!file_exists(SAVE_NAME)) touch(SAVE_NAME);
     /* 保存済データを読込 */
-    $lines = file_get_contents(SAVE_NAME);
+    $lines = '';
 
     /* $_POST の中にPOST入力が入る */
     if (!empty($_POST['title']) && !empty($_POST['review']) && !empty($_POST['text'])) {
@@ -206,8 +206,6 @@
         
         //ファイルに書き込み
         file_put_contents(SAVE_NAME, $new);
-        /* 新規保存データで読み込んだ変数を更新 */
-        $lines = $new;
     }
     ?>
     <div class="container">

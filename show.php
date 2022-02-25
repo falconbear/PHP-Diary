@@ -22,6 +22,8 @@
         $t1 = '';
         $t2 = '';
         $t3 = '';
+        $lines = file_get_contents(SAVE_NAME);
+        $line = '';
 
         // エスケープ関数  エスケープ処理とは、文字列の中で特殊な働きをする記号を単なる文字として認識させるための処理
         function escape($v){ 
