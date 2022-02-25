@@ -87,7 +87,7 @@
         } else {
             $week .= '<td>' . $day;
         }
-        $week .= '<br><button class="toDiary"><a href="diary.php">日記をつける</a></button><br><button class="show"><a href="diary.php">日記を見る</a></button><button class="edit"><a href="diary.php">編集</a></button></td>';
+        $week .= '<br><button class="toDiary"><a href="input.html">日記をつける</a></button><br><button class="show"><a href="show.php">日記を見る</a></button><button class="edit"><a href="show.php">編集</a></button></td>';
 
         // 週終わり、または、月終わりの場合
         if ($youbi % 7 == 6 || $day == $day_count) {
@@ -104,6 +104,110 @@
             // weekをリセット
             $week = '';
         }
+    }
+
+    /* 保存ファイル名 */
+    define('SAVE_NAME','memo.txt');
+
+    /* ユニークなID */
+    $id = uniqid();
+    /* 日時 */
+    $date = date('Y/m/d H:i');
+
+    $title = '';
+
+    $review = '';
+    /* テキスト */
+    $text = '';
+
+    // KPT用の配列
+    $keep = array();
+    $problem = array();
+    $try = array();
+
+    /* 保存データが無い時、作成 */
+    if (!file_exists(SAVE_NAME)) touch(SAVE_NAME);
+    /* 保存済データを読込 */
+    $lines = file_get_contents(SAVE_NAME);
+
+    /* $_POST の中にPOST入力が入る */
+    if (!empty($_POST['title']) && !empty($_POST['review']) && !empty($_POST['text'])) {
+
+        $title = $_POST['title'];
+        $review = $_POST['review'];
+        $text = $_POST['text'];
+        $keep = [
+            $_POST['k1'],
+            $_POST['k2'],
+            $_POST['k3']
+        ];
+        $problem = [
+            $_POST['p1'],
+            $_POST['p2'],
+            $_POST['p3']
+        ];
+        $try = [
+            $_POST['t1'],
+            $_POST['t2'],
+            $_POST['t3']
+        ];
+
+        /* 改行コードの統一 */
+        $text = str_replace("\r\n","\n",$text);
+        $text = str_replace("\r","\n",$text);
+        /* 改行コードを改行タグに */
+        $text = str_replace("\n","<br>",$text);
+        /* 区切り文字を除去 */
+        $text = str_replace("\t","",$text);
+        $title = str_replace("\t","",$title);
+
+        for($i=0; $i<3;$i++){
+            $keep[i] = str_replace("\t","",$keep[i]);
+            $problem[i] = str_replace("\t","",$problem[i]);
+            $try[i] = str_replace("\t","",$try[i]);
+        }
+
+        // $keep[0] = str_replace("\t","",$keep[0]);
+        // $keep[1] = str_replace("\t","",$keep[1]);
+        // $keep[2] = str_replace("\t","",$keep[2]);
+        // $problem[1] = str_replace("\t","",$problem[0]);
+        // $problem[2] = str_replace("\t","",$problem[1]);
+        // $problem[3] = str_replace("\t","",$problem[2]);
+        // $try[0] = str_replace("\t","",$try[0]);
+        // $try[1] = str_replace("\t","",$try[1]);
+        // $try[2] = str_replace("\t","",$try[2]);
+
+        /* 新規に登録するデータ */
+        $line = $id."\t".$date."\t".$title."\t".$review."\t".$text."\t".$keep[0]."\t".$keep[1]."\t".$keep[2]."\t".$problem[0]."\t".$problem[1]."\t".$problem[2]."\t".$try[0]."\t".$try[1]."\t".$try[2]."\n";
+
+        /* 新規データの後ろに保存済データを追加、更新 */
+        $lines = $line.$lines;
+        file_put_contents(SAVE_NAME, $lines);
+
+    /* $_POST['id'] に削除対象のIDが入る */
+    } elseif(isset($_POST['id']) && is_array($_POST['id'])) {
+
+        $new = '';
+
+        foreach(explode("\n",$lines) as $line){
+
+            /* データ仕様に合わない場合、次へ */
+            if( strpos($line,"\t")===false ) continue;
+
+            // 区切り文字でデータを分離 explodeは第一引数を境に文字列を分割して配列化する
+            list($id,$date,$title,$review,$text,$keep[0],$keep[1],$keep[2],$problem[0],$problem[1],$problem[2],$try[0],$try[1],$try[2]) = explode("\t",$line);
+
+            /* IDが指定されていた時、除外 */
+            if(in_array($id,$_POST['id'])) continue;
+
+            /* 新規保存データを作成 */
+            $new .= $line."\n";
+        }
+        
+        //ファイルに書き込み
+        file_put_contents(SAVE_NAME, $new);
+        /* 新規保存データで読み込んだ変数を更新 */
+        $lines = $new;
     }
     ?>
     <div class="container">

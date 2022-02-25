@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日記記入</title>
+</head>
+<body>
+<form action="scheduler.php" method="post">
+    <dl>
+        <dt>タイトル</dt>
+        <dd><input type="text" name="title" class="title"></dd>
+        <dt>今日の気分</dt>
+        <dd>
+            <select name="review" size="1">
+                <option hidden>下記より選んでください</option>
+                <option value="⭐︎">⭐︎</option>
+                <option value="⭐︎⭐︎">⭐︎⭐︎</option>
+                <option value="⭐︎⭐︎⭐︎">⭐︎⭐︎⭐︎</option>
+            </select>
+        </dd>
+        <dt>今日の出来事</dt>
+        <dd><textarea name="text" cols="40" rows="10" class="textarea"></textarea></dd>
+        <dt>KEEP</dt>
+        <ul>
+            <li><dd><input type="text" name="k1" class="k1"></dd></li>
+            <li><dd><input type="text" name="k2" class="k2"></dd></li>
+            <li><dd><input type="text" name="k3" class="k3"></dd></li>
+        </ul>
+        <dt>PROBLEM</dt>
+        <ul>
+            <li><dd><input type="text" name="p1" class="p1"></dd></li>
+            <li><dd><input type="text" name="p2" class="p2"></dd></li>
+            <li><dd><input type="text" name="p3" class="p3"></dd></li>
+        </ul>
+        <dt>TRY</dt>
+        <ul>
+            <li><dd><input type="text" name="t1" class="t1"></dd></li>
+            <li><dd><input type="text" name="t2" class="t2"></dd></li>
+            <li><dd><input type="text" name="t3" class="t3"></dd></li>
+        </ul>
+    </dl>
+    <input type="submit" value="記録">
+    </form>
+</body>
+</html>
