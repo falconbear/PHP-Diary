@@ -8,6 +8,9 @@
 </head>
 <body>
     <?php
+        /* 保存ファイル名 */
+        define('SAVE_NAME','memo.txt');
+
         $id = '';
         $date = '';
         $title = '';
@@ -30,7 +33,7 @@
             return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
         }
         function echoEscape($v){ 
-            echo escape($v); 
+            echo escape($v);
         }
         /* brタグの有効化 */
         function brToTag($v){
@@ -71,25 +74,34 @@
     ?>
 
     <?php if(count($DATA)): ?>
-    <form method="post">
+    <form action="scheduler.php" method="post">
         <table>
             <?php foreach($DATA as $d): ?>
-            <tr>
-                <td><?php echoEscape($d['date']); ?></td>
-                <td><?php echoEscape($d['title']); ?></td>
-                <td><?php echoEscape($d['review']); ?></td>
-                <td><?php echo brToTag( escape($d['text']) ); ?></td>
-                <td><?php echoEscape($d['k1']); ?></td>
-                <td><?php echoEscape($d['k2']); ?></td>
-                <td><?php echoEscape($d['k3']); ?></td>
-                <td><?php echoEscape($d['p1']); ?></td>
-                <td><?php echoEscape($d['p2']); ?></td>
-                <td><?php echoEscape($d['p3']); ?></td>
-                <td><?php echoEscape($d['t1']); ?></td>
-                <td><?php echoEscape($d['t2']); ?></td>
-                <td><?php echoEscape($d['t3']); ?></td>
-                <td><label><input type="checkbox" name="id[]" value="<?php echoEscape($d['id']); ?>">削除</label></td>
-            </tr>
+            <div>
+                <p>最終更新：</p><?php echoEscape($d['date']); ?><br>
+                <?php echoEscape($d['title']); ?><br>
+                <?php echoEscape($d['review']); ?><br>
+                <?php echo brToTag( escape($d['text']) ); ?><br>
+                <ul>
+                    <p>KEEP</p><br>
+                    <li><?php echoEscape($d['k1']); ?><br></li>
+                    <li><?php echoEscape($d['k2']); ?><br></li>
+                    <li><?php echoEscape($d['k3']); ?><br></li>
+                </ul>
+                <ul>
+                    <p>PROBLEM</p><br>
+                    <li><?php echoEscape($d['p1']); ?><br></li>
+                    <li><?php echoEscape($d['p2']); ?><br></li>
+                    <li><?php echoEscape($d['p3']); ?><br></li>
+                </ul>
+                <ul>
+                    <p>TRY</p><br>
+                    <li><?php echoEscape($d['t1']); ?><br></li>
+                    <li><?php echoEscape($d['t2']); ?><br></li>
+                    <li><?php echoEscape($d['t3']); ?><br></li>
+                </ul>
+                <label><input type="checkbox" name="id[]" value="<?php echoEscape($d['id']); ?>">削除</label>
+            </div>
             <?php endforeach; ?>
         </table>
         <input type="submit" value="メモを削除">
