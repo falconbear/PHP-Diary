@@ -1,7 +1,8 @@
 <?php
     require_once('dbconnect.php');
 
-    $result = getDiary($_GET['id']);
+    $dbc = new Dbc;
+    $result = $dbc->getDiary($_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
     <h2>ブログ詳細</h2>
     <h3>タイトル：<?php echo $result['title'] ?></h3>
     <p>投稿日時：<?php echo $result['date'] ?></p>
-    <p>評価：<?php echo starReview($result['review']) ?></p>
+    <p>評価：<?php echo $dbc->starReview($result['review']) ?></p>
     <hr>
     <p>本文：<?php echo $result['content'] ?></p>
 </body>

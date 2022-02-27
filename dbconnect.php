@@ -1,4 +1,6 @@
 <?php
+
+Class Dbc{
     // データベース接続
     function dbConnect(){
         $dsn = 'mysql:host=localhost;dbname=Diary_app;charset=utf8';
@@ -19,7 +21,7 @@
 
     // データ取得
     function getAllDiary(){
-        $dbh = dbConnect();
+        $dbh = $this->dbConnect();
 
         // SQL文の準備
         $sql = 'SELECT * from Diary';
@@ -55,7 +57,7 @@
             exit('IDが不正です');
         }
     
-        $dbh = dbConnect();
+        $dbh = $this->dbConnect();
     
         // SQL準備
         $stmt = $dbh->prepare('SELECT * from Diary Where id = :id');
@@ -73,4 +75,31 @@
 
         return $result;
     }
+
+    function diaryCreate($diaries){
+        $sql = 'INSERT INTO
+                diary(title, review, content)
+            VALUES
+            (:title, :review, :content)';
+
+        $dbh = $this->dbConnect();
+
+        // トランザクション
+        $dbh->beginTransaction();
+
+        try{
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindValue(':title', $diaries['title'], PDO::PARAM_STR);
+            $stmt->bindValue(':review', $diaries['review'], PDO::PARAM_INT);
+            $stmt->bindValue(':content', $diaries['content'], PDO::PARAM_STR);
+            $stmt->execute();
+            $dbh->commit();
+
+            echo 'ブログを投稿しました!';
+        }catch(PDOException $e){
+            $dbh->rollback();
+            exit($e);
+        }
+    }
+}
 ?>

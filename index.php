@@ -1,8 +1,9 @@
 <?php
     require_once('dbconnect.php');
 
+    $dbc = new Dbc();
     // 取得したデータの表示
-    $diaryData = getAllDiary();
+    $diaryData = $dbc->getAllDiary();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
             <td><?php echo $column["id"] ?></td>
             <td><?php echo $column["date"] ?></td>
             <td><?php echo $column["title"] ?></td>
-            <td><?php echo starReview($column["review"]) ?></td>
+            <td><?php echo $dbc->starReview($column["review"]) ?></td>
             <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
         </tr>
         <?php endforeach; ?>
