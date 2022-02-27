@@ -1,6 +1,10 @@
 <?php
     $id = $_GET['id'];
 
+    if(empty($id)){
+        exit('IDが不正です');
+    }
+
     function dbConnect(){
         $dsn = 'mysql:host=localhost;dbname=Diary_app;charset=utf8';
         $user = 'diary_user';
@@ -32,6 +36,10 @@
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     var_dump($result);
+
+    if(!$result){
+        exit('データがありません');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +51,11 @@
     <title>詳細</title>
 </head>
 <body>
-    
+    <h2>ブログ詳細</h2>
+    <h3>タイトル：<?php echo $result['title'] ?></h3>
+    <p>投稿日時：<?php echo $result['date'] ?></p>
+    <p>評価：<?php echo $result['review'] ?></p>
+    <hr>
+    <p>本文：<?php echo $result['text'] ?></p>
 </body>
 </html>
