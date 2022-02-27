@@ -20,9 +20,9 @@
 
         public function diaryCreate($diaries){
             $sql = "INSERT INTO
-                        $this->table_name(title, review, content)
+                        $this->table_name(id, title, review, content)
                     VALUES
-                        (:title, :review, :content)";
+                        (:id, :title, :review, :content)";
     
             $dbh = $this->dbConnect();
     
@@ -31,6 +31,7 @@
     
             try{
                 $stmt = $dbh->prepare($sql);
+                $stmt->bindValue(':id', $diaries['id'], PDO::PARAM_INT);
                 $stmt->bindValue(':title', $diaries['title'], PDO::PARAM_STR);
                 $stmt->bindValue(':review', $diaries['review'], PDO::PARAM_INT);
                 $stmt->bindValue(':content', $diaries['content'], PDO::PARAM_STR);
@@ -46,6 +47,9 @@
 
         // 日記のバリデーション
         public function validate($diaries){
+            if(empty($diaries['id'])){
+                exit('idを入力してください');
+            }
             if(empty($diaries['title'])){
                 exit('タイトルを入力してください');
             }

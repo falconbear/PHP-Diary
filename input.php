@@ -1,3 +1,6 @@
+<?php
+    $id = $_GET['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,7 @@
 <body>
 <form action="diary_create.php" method="post">
     <dl>
+        <input type="hidden" id="<?php echo $id ?>">
         <dt>タイトル</dt>
         <dd><input type="text" name="title" class="title"></dd>
         <dt>今日の気分</dt>
@@ -25,5 +29,6 @@
     </dl>
     <input type="submit" value="記録">
     </form>
+    <p><a href="/index.php">戻る</a></p>
 </body>
 </html>

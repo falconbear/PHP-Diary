@@ -17,7 +17,7 @@
 </head>
 <body>
     <h2>日記一覧</h2>
-    <p><a href="/input.html">新規作成</a></p>
+    <p><a href="/input.php">新規作成</a></p>
     <table>
         <tr>
             <th>日付</th>

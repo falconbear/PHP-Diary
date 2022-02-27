@@ -10,3 +10,4 @@
     $diary->diaryCreate($diaries);
     
 ?>
+<p><a href="/index.php">戻る</a></p>

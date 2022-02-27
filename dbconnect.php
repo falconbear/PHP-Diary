@@ -62,10 +62,6 @@
         
             // 結果を取得
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-            if(!$result){
-                exit('データがありません');
-            }
 
             return $result;
         }

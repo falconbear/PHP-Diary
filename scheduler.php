@@ -87,7 +87,7 @@
         } else {
             $week .= '<td>' . $day;
         }
-        $week .= '<br><button class="toDiary"><a href="input.html">日記をつける</a></button><br><button class="show"><a href="show.php">日記を見る</a></button><button class="edit"><a href="show.php">編集</a></button></td>';
+        $week .= '<br><button class="toDiary"><a href="input.html">日記をつける</a></button><br><button class="show"><a href="show.php?id=2">日記を見る</a></button><button class="edit"><a href="show.php">編集</a></button></td>';
 
         // 週終わり、または、月終わりの場合
         if ($youbi % 7 == 6 || $day == $day_count) {

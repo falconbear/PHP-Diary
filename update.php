@@ -3,6 +3,9 @@
 
     $diary = new Diary('Diary');
     $result = $diary->getById($_GET['id']);
+    if(!$result){
+        exit('データがありません');
+    }
 
     $id = $result['id'];
     $title = $result['title'];
@@ -38,5 +41,6 @@
     </dl>
     <input type="submit" value="記録">
     </form>
+    <p><a href="/index.php">戻る</a></p>
 </body>
 </html>

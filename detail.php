@@ -3,6 +3,9 @@
 
     $diary = new Diary();
     $result = $diary->getById($_GET['id']);
+    if(!$result){
+        exit('データがありません');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,5 +23,6 @@
     <p>評価：<?php echo $diary->starReview($result['review']) ?></p>
     <hr>
     <p>本文：<?php echo $diary->escape($result['content']) ?></p>
+    <p><a href="/index.php">戻る</a></p>
 </body>
 </html>
