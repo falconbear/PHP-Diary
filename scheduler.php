@@ -118,7 +118,7 @@
 
     $review = '';
     /* テキスト */
-    $text = '';
+    $content = '';
 
     // KPT用の配列
     $keep = array();
@@ -131,23 +131,23 @@
     $lines = '';
 
     /* $_POST の中にPOST入力が入る */
-    if (!empty($_POST['title']) && !empty($_POST['review']) && !empty($_POST['text'])) {
+    if (!empty($_POST['title']) && !empty($_POST['review']) && !empty($_POST['content'])) {
 
         $title = $_POST['title'];
         $review = $_POST['review'];
-        $text = $_POST['text'];
+        $content = $_POST['content'];
 
         /* 改行コードの統一 */
-        $text = str_replace("\r\n","\n",$text);
-        $text = str_replace("\r","\n",$text);
+        $content = str_replace("\r\n","\n",$content);
+        $content = str_replace("\r","\n",$content);
         /* 改行コードを改行タグに */
-        $text = str_replace("\n","<br>",$text);
+        $content = str_replace("\n","<br>",$content);
         /* 区切り文字を除去 */
-        $text = str_replace("\t","",$text);
+        $content = str_replace("\t","",$content);
         $title = str_replace("\t","",$title);
 
         /* 新規に登録するデータ */
-        $line = $id."\t".$date."\t".$title."\t".$review."\t".$text."\n";
+        $line = $id."\t".$date."\t".$title."\t".$review."\t".$content."\n";
 
         /* 新規データの後ろに保存済データを追加、更新 */
         $lines = $line.$lines;
@@ -164,7 +164,7 @@
             if( strpos($line,"\t")===false ) continue;
 
             // 区切り文字でデータを分離 explodeは第一引数を境に文字列を分割して配列化する
-            list($id,$date,$title,$review,$text) = explode("\t",$line);
+            list($id,$date,$title,$review,$content) = explode("\t",$line);
 
             /* IDが指定されていた時、除外 */
             if(in_array($id,$_POST['id'])) continue;

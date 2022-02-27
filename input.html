@@ -7,7 +7,7 @@
     <title>日記記入</title>
 </head>
 <body>
-<form action="scheduler.php" method="post">
+<form action="diary_create.php" method="post">
     <dl>
         <dt>タイトル</dt>
         <dd><input type="text" name="title" class="title"></dd>
@@ -15,31 +15,13 @@
         <dd>
             <select name="review" size="1">
                 <option hidden>下記より選んでください</option>
-                <option value="⭐︎">⭐︎</option>
-                <option value="⭐︎⭐︎">⭐︎⭐︎</option>
-                <option value="⭐︎⭐︎⭐︎">⭐︎⭐︎⭐︎</option>
+                <option value="1">⭐︎</option>
+                <option value="2">⭐︎⭐︎</option>
+                <option value="3">⭐︎⭐︎⭐︎</option>
             </select>
         </dd>
         <dt>今日の出来事</dt>
-        <dd><textarea name="text" cols="40" rows="10" class="textarea"></textarea></dd>
-        <dt>KEEP</dt>
-        <ul>
-            <li><dd><input type="text" name="k1" class="k1"></dd></li>
-            <li><dd><input type="text" name="k2" class="k2"></dd></li>
-            <li><dd><input type="text" name="k3" class="k3"></dd></li>
-        </ul>
-        <dt>PROBLEM</dt>
-        <ul>
-            <li><dd><input type="text" name="p1" class="p1"></dd></li>
-            <li><dd><input type="text" name="p2" class="p2"></dd></li>
-            <li><dd><input type="text" name="p3" class="p3"></dd></li>
-        </ul>
-        <dt>TRY</dt>
-        <ul>
-            <li><dd><input type="text" name="t1" class="t1"></dd></li>
-            <li><dd><input type="text" name="t2" class="t2"></dd></li>
-            <li><dd><input type="text" name="t3" class="t3"></dd></li>
-        </ul>
+        <dd><textarea name="content" cols="40" rows="10" class="textarea"></textarea></dd>
     </dl>
     <input type="submit" value="記録">
     </form>

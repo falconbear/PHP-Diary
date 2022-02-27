@@ -1,5 +1,4 @@
 <?php
-    
     // データベース接続
     function dbConnect(){
         $dsn = 'mysql:host=localhost;dbname=Diary_app;charset=utf8';
@@ -35,9 +34,6 @@
         $dbh = null;
     }
 
-    // 取得したデータの表示
-    $diaryData = getAllDiary();
-
     // 星評価の実装
     function starReview($number){
         if($number === '1'){
@@ -50,33 +46,31 @@
             return 'その他';
         }
     }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>一覧表示</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>No</th>
-            <th>日付</th>
-            <th>タイトル</th>
-            <th>評価</th>
-        </tr>
-        <?php foreach($diaryData as $column): ?>
-        <tr>
-            <td><?php echo $column["id"] ?></td>
-            <td><?php echo $column["date"] ?></td>
-            <td><?php echo $column["title"] ?></td>
-            <td><?php echo starReview($column["review"]) ?></td>
-            <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-</body>
-</html>
+
+    // 引数：$id
+    // 返り値：$result
+    function getDiary($id){
+        if(empty($id)){
+            exit('IDが不正です');
+        }
+    
+        $dbh = dbConnect();
+    
+        // SQL準備
+        $stmt = $dbh->prepare('SELECT * from Diary Where id = :id');
+        $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
+    
+        // SQL実行
+        $stmt->execute();
+    
+        // 結果を取得
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if(!$result){
+            exit('データがありません');
+        }
+
+        return $result;
+    }
+?>

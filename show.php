@@ -15,7 +15,7 @@
         $date = '';
         $title = '';
         $review = '';
-        $text = '';
+        $content = '';
         $lines = file_get_contents(SAVE_NAME);
         $line = '';
 
@@ -42,14 +42,14 @@
             if( strpos($line,"\t") === false ) continue;
 
             /* 区切り文字でデータを分離 */
-            list($id,$date,$title,$review,$text) = explode("\t",$line);
+            list($id,$date,$title,$review,$content) = explode("\t",$line);
 
             $DATA[] = array(
                 'id'=>$id,
                 'date'=>$date,
                 'title'=>$title,
                 'review'=>$review,
-                'text'=>$text,
+                'content'=>$content,
             );
         }
 
@@ -63,7 +63,7 @@
                 <p>最終更新：</p><?php echoEscape($d['date']); ?><br>
                 <?php echoEscape($d['title']); ?><br>
                 <?php echoEscape($d['review']); ?><br>
-                <?php echo brToTag( escape($d['text']) ); ?><br>
+                <?php echo brToTag( escape($d['content']) ); ?><br>
                 <label><input type="checkbox" name="id[]" value="<?php echoEscape($d['id']); ?>">削除</label>
             </div>
             <?php endforeach; ?>
