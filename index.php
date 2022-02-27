@@ -1,9 +1,10 @@
 <?php
-    require_once('dbconnect.php');
+    require_once('diary.php');
+    ini_set('display_errors', "on");
 
-    $dbc = new Dbc();
+    $diary = new Diary('Diary');
     // 取得したデータの表示
-    $diaryData = $dbc->getAllDiary();
+    $diaryData = $diary->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -19,18 +20,17 @@
     <p><a href="/input.html">新規作成</a></p>
     <table>
         <tr>
-            <th>No</th>
             <th>日付</th>
             <th>タイトル</th>
             <th>評価</th>
         </tr>
         <?php foreach($diaryData as $column): ?>
         <tr>
-            <td><?php echo $column["id"] ?></td>
             <td><?php echo $column["date"] ?></td>
             <td><?php echo $column["title"] ?></td>
-            <td><?php echo $dbc->starReview($column["review"]) ?></td>
+            <td><?php echo $diary->starReview($column["review"]) ?></td>
             <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
+            <td><a href="/update.php?id=<?php echo $column["id"] ?>">編集</a></td>
         </tr>
         <?php endforeach; ?>
     </table>
