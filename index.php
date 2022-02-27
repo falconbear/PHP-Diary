@@ -2,7 +2,7 @@
     require_once('diary.php');
     ini_set('display_errors', "on");
 
-    $diary = new Diary('Diary');
+    $diary = new Diary();
     // 取得したデータの表示
     $diaryData = $diary->getAll();
 ?>
@@ -26,11 +26,12 @@
         </tr>
         <?php foreach($diaryData as $column): ?>
         <tr>
-            <td><?php echo $column["date"] ?></td>
-            <td><?php echo $column["title"] ?></td>
+            <td><?php echo $diary->escape($column['date']) ?></td>
+            <td><?php echo $diary->escape($column['title']) ?></td>
             <td><?php echo $diary->starReview($column["review"]) ?></td>
             <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
             <td><a href="/update.php?id=<?php echo $column["id"] ?>">編集</a></td>
+            <td><a href="/delete.php?id=<?php echo $column["id"] ?>">削除</a></td>
         </tr>
         <?php endforeach; ?>
     </table>

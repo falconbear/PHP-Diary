@@ -1,7 +1,7 @@
 <?php
     require_once('diary.php');
 
-    $diary = new Diary('Diary');
+    $diary = new Diary();
     $result = $diary->getById($_GET['id']);
 ?>
 
@@ -15,10 +15,10 @@
 </head>
 <body>
     <h2>ブログ詳細</h2>
-    <h3>タイトル：<?php echo $result['title'] ?></h3>
-    <p>投稿日時：<?php echo $result['date'] ?></p>
+    <h3>タイトル：<?php echo $diary->escape($result['title']) ?></h3>
+    <p>投稿日時：<?php echo $diary->escape($result['date']) ?></p>
     <p>評価：<?php echo $diary->starReview($result['review']) ?></p>
     <hr>
-    <p>本文：<?php echo $result['content'] ?></p>
+    <p>本文：<?php echo $diary->escape($result['content']) ?></p>
 </body>
 </html>

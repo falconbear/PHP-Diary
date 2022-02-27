@@ -1,76 +1,39 @@
+<?php
+    require_once('diary.php');
+    ini_set('display_errors', "on");
+
+    $diary = new Diary();
+    // 取得したデータの表示
+    $diaryData = $diary->getAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>一覧表示</title>
 </head>
 <body>
-    <?php
-        /* 保存ファイル名 */
-        define('SAVE_NAME','memo.txt');
-
-        $id = '';
-        $date = '';
-        $title = '';
-        $review = '';
-        $content = '';
-        $lines = file_get_contents(SAVE_NAME);
-        $line = '';
-
-        // エスケープ関数  エスケープ処理とは、文字列の中で特殊な働きをする記号を単なる文字として認識させるための処理
-        function escape($v){ 
-            return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
-        }
-        function echoEscape($v){ 
-            echo escape($v);
-        }
-        /* brタグの有効化 */
-        function brToTag($v){
-            /* エスケープされた<br>を戻す */
-            return str_replace('&lt;br&gt;','<br>',$v);
-        }
-
-        /* 出力用の変数 */
-        $DATA = array();
-
-        /* 出力用に代入 */
-        foreach(explode("\n",$lines) as $line){
-
-            /* データ仕様に合わない場合、次へ */
-            if( strpos($line,"\t") === false ) continue;
-
-            /* 区切り文字でデータを分離 */
-            list($id,$date,$title,$review,$content) = explode("\t",$line);
-
-            $DATA[] = array(
-                'id'=>$id,
-                'date'=>$date,
-                'title'=>$title,
-                'review'=>$review,
-                'content'=>$content,
-            );
-        }
-
-    ?>
-
-    <?php if(count($DATA)): ?>
-    <form action="scheduler.php" method="post">
-        <table>
-            <?php foreach($DATA as $d): ?>
-            <div>
-                <p>最終更新：</p><?php echoEscape($d['date']); ?><br>
-                <?php echoEscape($d['title']); ?><br>
-                <?php echoEscape($d['review']); ?><br>
-                <?php echo brToTag( escape($d['content']) ); ?><br>
-                <label><input type="checkbox" name="id[]" value="<?php echoEscape($d['id']); ?>">削除</label>
-            </div>
-            <?php endforeach; ?>
-        </table>
-        <input type="submit" value="メモを削除">
-    </form>
-    <?php endif; ?>
+    <h2>日記一覧</h2>
+    <p><a href="/input.html">新規作成</a></p>
+    <table>
+        <tr>
+            <th>日付</th>
+            <th>タイトル</th>
+            <th>評価</th>
+        </tr>
+        <?php foreach($diaryData as $column): ?>
+        <tr>
+            <td><?php echo $diary->escape($column['date']) ?></td>
+            <td><?php echo $diary->escape($column['title']) ?></td>
+            <td><?php echo $diary->starReview($column["review"]) ?></td>
+            <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
+            <td><a href="/update.php?id=<?php echo $column["id"] ?>">編集</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
 </body>
 </html>
 
