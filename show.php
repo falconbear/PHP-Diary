@@ -16,15 +16,6 @@
         $title = '';
         $review = '';
         $text = '';
-        $k1 = '';
-        $k2 = '';
-        $k3 = '';
-        $p1 = '';
-        $p2 = '';
-        $p3 = '';
-        $t1 = '';
-        $t2 = '';
-        $t3 = '';
         $lines = file_get_contents(SAVE_NAME);
         $line = '';
 
@@ -51,7 +42,7 @@
             if( strpos($line,"\t") === false ) continue;
 
             /* 区切り文字でデータを分離 */
-            list($id,$date,$title,$review,$text,$k1,$k2,$k3,$p1,$p2,$p3,$t1,$t2,$t3,) = explode("\t",$line);
+            list($id,$date,$title,$review,$text) = explode("\t",$line);
 
             $DATA[] = array(
                 'id'=>$id,
@@ -59,15 +50,6 @@
                 'title'=>$title,
                 'review'=>$review,
                 'text'=>$text,
-                'k1'=>$k1,
-                'k2'=>$k2,
-                'k3'=>$k3,
-                'p1'=>$p1,
-                'p2'=>$p2,
-                'p3'=>$p3,
-                't1'=>$t1,
-                't2'=>$t2,
-                't3'=>$t3
             );
         }
 
@@ -82,24 +64,6 @@
                 <?php echoEscape($d['title']); ?><br>
                 <?php echoEscape($d['review']); ?><br>
                 <?php echo brToTag( escape($d['text']) ); ?><br>
-                <ul>
-                    <p>KEEP</p><br>
-                    <li><?php echoEscape($d['k1']); ?><br></li>
-                    <li><?php echoEscape($d['k2']); ?><br></li>
-                    <li><?php echoEscape($d['k3']); ?><br></li>
-                </ul>
-                <ul>
-                    <p>PROBLEM</p><br>
-                    <li><?php echoEscape($d['p1']); ?><br></li>
-                    <li><?php echoEscape($d['p2']); ?><br></li>
-                    <li><?php echoEscape($d['p3']); ?><br></li>
-                </ul>
-                <ul>
-                    <p>TRY</p><br>
-                    <li><?php echoEscape($d['t1']); ?><br></li>
-                    <li><?php echoEscape($d['t2']); ?><br></li>
-                    <li><?php echoEscape($d['t3']); ?><br></li>
-                </ul>
                 <label><input type="checkbox" name="id[]" value="<?php echoEscape($d['id']); ?>">削除</label>
             </div>
             <?php endforeach; ?>

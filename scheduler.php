@@ -136,21 +136,6 @@
         $title = $_POST['title'];
         $review = $_POST['review'];
         $text = $_POST['text'];
-        $keep = [
-            $_POST['k1'],
-            $_POST['k2'],
-            $_POST['k3']
-        ];
-        $problem = [
-            $_POST['p1'],
-            $_POST['p2'],
-            $_POST['p3']
-        ];
-        $try = [
-            $_POST['t1'],
-            $_POST['t2'],
-            $_POST['t3']
-        ];
 
         /* 改行コードの統一 */
         $text = str_replace("\r\n","\n",$text);
@@ -161,24 +146,8 @@
         $text = str_replace("\t","",$text);
         $title = str_replace("\t","",$title);
 
-        for($i=0; $i<3;$i++){
-            $keep[i] = str_replace("\t","",$keep[i]);
-            $problem[i] = str_replace("\t","",$problem[i]);
-            $try[i] = str_replace("\t","",$try[i]);
-        }
-
-        // $keep[0] = str_replace("\t","",$keep[0]);
-        // $keep[1] = str_replace("\t","",$keep[1]);
-        // $keep[2] = str_replace("\t","",$keep[2]);
-        // $problem[1] = str_replace("\t","",$problem[0]);
-        // $problem[2] = str_replace("\t","",$problem[1]);
-        // $problem[3] = str_replace("\t","",$problem[2]);
-        // $try[0] = str_replace("\t","",$try[0]);
-        // $try[1] = str_replace("\t","",$try[1]);
-        // $try[2] = str_replace("\t","",$try[2]);
-
         /* 新規に登録するデータ */
-        $line = $id."\t".$date."\t".$title."\t".$review."\t".$text."\t".$keep[0]."\t".$keep[1]."\t".$keep[2]."\t".$problem[0]."\t".$problem[1]."\t".$problem[2]."\t".$try[0]."\t".$try[1]."\t".$try[2]."\n";
+        $line = $id."\t".$date."\t".$title."\t".$review."\t".$text."\n";
 
         /* 新規データの後ろに保存済データを追加、更新 */
         $lines = $line.$lines;
@@ -195,7 +164,7 @@
             if( strpos($line,"\t")===false ) continue;
 
             // 区切り文字でデータを分離 explodeは第一引数を境に文字列を分割して配列化する
-            list($id,$date,$title,$review,$text,$keep[0],$keep[1],$keep[2],$problem[0],$problem[1],$problem[2],$try[0],$try[1],$try[2]) = explode("\t",$line);
+            list($id,$date,$title,$review,$text) = explode("\t",$line);
 
             /* IDが指定されていた時、除外 */
             if(in_array($id,$_POST['id'])) continue;
