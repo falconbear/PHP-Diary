@@ -1,32 +1,55 @@
 <?php
+    
+    // データベース接続
+    function dbConnect(){
+        $dsn = 'mysql:host=localhost;dbname=Diary_app;charset=utf8';
+        $user = 'diary_user';
+        $pass = 'hayabusakuma64';
 
-$dsn = 'mysql:host=localhost;dbname=Diary_app;charset=utf8';
-$user = 'diary_user';
-$pass = 'hayabusakuma64';
+        try{
+            $dbh = new PDO($dsn, $user, $pass, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            ]);
+        }catch(PDOException $e){
+            echo '接続失敗'. $e->getMessage();
+            exit();
+        };
 
-try{
-    $dbh = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
+        return $dbh;
+    }
 
-    // echo '接続成功';
+    // データ取得
+    function getAllDiary(){
+        $dbh = dbConnect();
 
-    // SQL文の準備
-    $sql = 'SELECT * from Diary';
+        // SQL文の準備
+        $sql = 'SELECT * from Diary';
 
-    // SQLの実行
-    $stmt = $dbh->query($sql);
+        // SQLの実行
+        $stmt = $dbh->query($sql);
 
-    // SQLの結果を受け取る
-    $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+        // SQLの結果を受け取る
+        $result = $stmt->fetchall(PDO::FETCH_ASSOC);
 
-    $dbh = null;
+        return $result;
+        $dbh = null;
+    }
 
-}catch(PDOException $e){
-    echo '接続失敗'. $e->getMessage();
-    exit();
-}
+    // 取得したデータの表示
+    $diaryData = getAllDiary();
 
+    // 星評価の実装
+    function starReview($number){
+        if($number === '1'){
+            return '⭐️';
+        } elseif($number === '2'){
+            return '⭐️⭐️';
+        } elseif($number === '3'){
+            return '⭐️⭐️⭐️';
+        } else{
+            return 'その他';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -43,12 +66,15 @@ try{
             <th>No</th>
             <th>日付</th>
             <th>タイトル</th>
+            <th>評価</th>
         </tr>
-        <?php foreach($result as $column): ?>
+        <?php foreach($diaryData as $column): ?>
         <tr>
             <td><?php echo $column["id"] ?></td>
             <td><?php echo $column["date"] ?></td>
             <td><?php echo $column["title"] ?></td>
+            <td><?php echo starReview($column["review"]) ?></td>
+            <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
         </tr>
         <?php endforeach; ?>
     </table>
