@@ -30,13 +30,13 @@
 <body>
     <header>
         <nav class="navbar">
+            <h1 class="headTitle">カレンダイアリー</h1>
             <ul class="link">
                 <li><a href="/index.php">日記一覧</a></li>
                 <li><a href="/verticalCal.php">縦型カレンダー</a></li>
                 <li><a href="#vision">習慣登録</a></li>
                 <li><a href="#contact">習慣ログ</a></li>
             </ul>
-            <h1 class="headTitle">カレンダー</h1>
         </nav>
     </header>
     <div class="container">

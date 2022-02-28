@@ -30,13 +30,13 @@
 <body>
     <header>
         <nav class="navbar">
+            <h1 class="headTitle">カレンダイアリー</h1>
             <ul class="link">
                 <li><a href="/index.php">日記一覧</a></li>
                 <li><a href="/makeCalender.php">カレンダー</a></li>
                 <li><a href="#vision">習慣登録</a></li>
                 <li><a href="#contact">習慣ログ</a></li>
             </ul>
-            <h1 class="headTitle">カレンダー</h1>
         </nav>
     </header>
     <div class="container">
@@ -49,37 +49,35 @@
                             $date = $ym . '-' . $day;
                             $id = strtotime($date);
                         ?>
-                        <div class="caldom">
-                            <td <?php if($date === $today) echo 'class="today"' ?>>
-                                <div
-                                    <?php if($youbi % 7 === 0): ?>
-                                        <?php echo 'class="sunday"' ?>
-                                    <?php elseif($youbi % 7 === 6): ?>
-                                        <?php echo 'class="saturday"' ?>
-                                    <?php else: ?>
-                                        <?php echo 'class="weekday"' ?>
-                                    <?php endif ?>
-                                >
-                                    <?php echo $day." "?>
-                                    <div class="youbi"><?php echo $calender->Youbi($youbi)?></div>
-                                </div>
-                            </td>
-                        </div>
+                        <td id="caldom" <?php if($date === $today) echo 'class="today"' ?>>
+                            <div
+                                <?php if($youbi % 7 === 0): ?>
+                                    <?php echo 'class="sunday"' ?>
+                                <?php elseif($youbi % 7 === 6): ?>
+                                    <?php echo 'class="saturday"' ?>
+                                <?php else: ?>
+                                    <?php echo 'class="weekday"' ?>
+                                <?php endif ?>
+                            >
+                                <?php echo $day." "?>
+                                <div class="youbi"><?php echo $calender->Youbi($youbi)?></div>
+                            </div>
+                        </td>
                         <td>
                             <?php $result = $diary->getById($id) ?>
                             <ul class="nikkidom">
-                                <li>
-                                    <?php if(!$result): ?>
+                                <?php if(!$result): ?>
+                                    <li class="no-nikki">
                                         <form action="/input.php" method="POST">
                                             <input type="hidden" name="id" value="<?php echo $id ?>" >
                                             <input type="submit" value="新規作成">
                                         </form>
-                                    <?php else: ?>
-                                        <?php echo $diary->escape($result['title']) ?></li>
-                                        <li><?php echo $diary->starReview($result["review"]) ?></li>
-                                        <li><a href="/detail.php?id=<?php echo $id ?>">日記を見る</a>
-                                    <?php endif ?>
-                                </li>
+                                    </li>
+                                <?php else: ?>
+                                    <li class="nikki-title"><?php echo $diary->escape($result['title']) ?></li>
+                                    <li class="nikki-review"><?php echo $diary->starReview($result["review"]) ?></li>
+                                    <li><a href="/detail.php?id=<?php echo $id ?>">詳細</a></li>
+                                <?php endif ?>
                             </ul>
                         </td>
                         </tr><tr>

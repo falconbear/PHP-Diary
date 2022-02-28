@@ -1,15 +1,24 @@
+body {
+    background-color: #edeff1;
+}
 .container{
     font-family: 'Montserrat', sans-serif;
     margin-top: 80px;
 }
 a {
     text-decoration: none;
+    color: #297373;
 }
-th {
+
+.varCal tr {
+    height: 30px;
+}
+
+.container th {
     height: 30px;
     text-align: center;
 }
-td {
+.container td {
     height: 100px;
 }
 .linkbutton {
@@ -17,77 +26,87 @@ td {
 }
 
 .today {
-    background: orange !important;
+    background: #F09D51 !important;
 }
 th:nth-of-type(1), td:nth-of-type(1) {
-    color: red;
+    color: #F06543;
 }
 th:nth-of-type(7), td:nth-of-type(7) {
-    color: blue;
+    color: #7D84B2;
 }
-.toDiary{
+/* .toDiary{
     text-align: center;
-}
+} */
 
 .navbar {
     margin: 0px;
-    height: 200px;
+    height: 120px;
     width: 100vw;
-    background-color: gray;
+    background-color: #E0DFD5;
 }
-
 .navbar ul {
     list-style: none;
     text-align: right;
     margin: 0;
     padding: 10px 30px;
 }
-
 .link li {
     display: inline;
     margin-right: 15px;
 }
-
 .link li a {
     text-decoration: none;
-    color: white;
+    color: #297373;
 }
-a:hover {
+.link li a:hover {
     text-decoration: underline;
-
 }
-
 .headTitle {
-    text-align: center;
+    margin-left: 120px;
     padding: 20px 0;
+    columns: #297373;
 }
-.varCal {
-    color: black;
-}
+
 .sunday {
-    color: red;
+    color: #F06543;
 }
 .saturday {
-    color: blue;
+    color: #7D84B2;
 }
 .weekday {
-    color: black;
+    color: #313638;
 }
 .youbi {
     font-size: 12px;
 }
-.caldom td {
-    text-align: center;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-.caldom {
-    width: 20%;
+#caldom {
+    width: 100px;
 }
 .nikkidom li {
-    display: inline;
+    display: inline-block;
     margin-right: 15px;
 }
-.varCal tr {
-    height: 30px;
+.nonikki {
+    text-align: center;
+}
+.nikki-title {
+    width: 700px;
+}
+.nikki-review {
+    width: 100px;
+}
+
+.mb-5 {
+    color: #297373;
+}
+
+h1 {
+    color: #313638;
+}
+
+.allview {
+    color:#313638;
+}
+.allview tr td a {
+    color: #297373;
 }
