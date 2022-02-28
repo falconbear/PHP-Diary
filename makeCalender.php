@@ -1,4 +1,3 @@
-
 <?php
     require_once('diary.php');
     require_once('calender.php');
@@ -30,16 +29,16 @@
 </head>
 <body>
     <header>
-        <nav class="navBer">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#aboutMe">About Me</a></li>
-                <li><a href="#vision">Vision</a></li>
-                <li><a href="#contact">Contact</a></li>
+        <nav class="navbar">
+            <ul class="link">
+                <li><a href="/index.php">日記一覧</a></li>
+                <li><a href="/verticalCal.php">縦型カレンダー</a></li>
+                <li><a href="#vision">習慣登録</a></li>
+                <li><a href="#contact">習慣ログ</a></li>
             </ul>
+            <h1 class="headTitle">カレンダー</h1>
         </nav>
     </header>
-    <h1 text_aline="center">カレンダー</h1>
     <div class="container">
     <h3 class="mb-5"><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $calender_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
         <table class="table table-bordered">
@@ -62,17 +61,18 @@
                         $id = strtotime($date);
                     ?>
                     <td <?php if($date === $today) echo 'class="today"' ?>>
-                        <?php echo $day ?><br>
+                            <?php echo $day ?><br><br>
                         <?php $result = $diary->getById($id) ?>
-                        <?php if(!$result): ?>
-                            <!-- <a href="/input.php?id=">新規作成</a> -->
-                            <form action="/input.php" method="POST">
-                                <input type="hidden" name="id" value="<?php echo $id ?>" >
-                                <input type="submit" value="新規作成">
-                            </form>
-                        <?php else: ?>
-                            <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">日記を見る</a>
-                        <?php endif ?>
+                        <div class="linkbutton">
+                            <?php if(!$result): ?>
+                                <form action="/input.php" method="POST">
+                                    <input type="hidden" name="id" value="<?php echo $id ?>" >
+                                    <input type="submit" value="新規作成">
+                                </form>
+                            <?php else: ?>
+                                <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">日記を見る</a>
+                            <?php endif ?>
+                        </div>
                     </td>
                     <?php if($youbi % 7 == 6): ?>
                         </tr><tr>

@@ -12,6 +12,10 @@ th {
 td {
     height: 100px;
 }
+.linkbutton {
+    text-align: center;
+}
+
 .today {
     background: orange !important;
 }
@@ -23,4 +27,67 @@ th:nth-of-type(7), td:nth-of-type(7) {
 }
 .toDiary{
     text-align: center;
+}
+
+.navbar {
+    margin: 0px;
+    height: 200px;
+    width: 100vw;
+    background-color: gray;
+}
+
+.navbar ul {
+    list-style: none;
+    text-align: right;
+    margin: 0;
+    padding: 10px 30px;
+}
+
+.link li {
+    display: inline;
+    margin-right: 15px;
+}
+
+.link li a {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    text-decoration: underline;
+
+}
+
+.headTitle {
+    text-align: center;
+    padding: 20px 0;
+}
+.varCal {
+    color: black;
+}
+.sunday {
+    color: red;
+}
+.saturday {
+    color: blue;
+}
+.weekday {
+    color: black;
+}
+.youbi {
+    font-size: 12px;
+}
+.caldom td {
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.caldom {
+    width: 20%;
+}
+.nikkidom li {
+    display: inline;
+    margin-right: 15px;
+}
+.varCal tr {
+    height: 30px;
 }

@@ -19,10 +19,11 @@
 <body>
     <h2>日記詳細</h2>
     <h3>タイトル：<?php echo $diary->escape($result['title']) ?></h3>
-    <p>投稿日時：<?php echo $diary->escape($result['date']) ?></p>
+    <p>日時：<?php echo $diary->escape(date('Y-m-j', $result['id'])) ?></p>
+    <p>最終更新：<?php echo $diary->escape($result['date']) ?></p>
     <p>評価：<?php echo $diary->starReview($result['review']) ?></p>
     <hr>
-    <p>本文：<?php echo nl2br($diary->escape($result['content'])) ?></p>
+    <p><?php echo nl2br($diary->escape($result['content'])) ?></p>
     <a href="/update.php?id=<?php echo $result["id"] ?>">編集</a>
     <a href="/delete.php?id=<?php echo $result["id"] ?>">削除</a>
     <p><a href="/makeCalender.php">戻る</a></p>

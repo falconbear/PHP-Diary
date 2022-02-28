@@ -17,18 +17,19 @@
 </head>
 <body>
     <h2>日記一覧</h2>
-    <p><a href="/input.php">新規作成</a></p>
     <table>
         <tr>
             <th>日付</th>
             <th>タイトル</th>
             <th>評価</th>
+            <th>最終更新日</th>
         </tr>
         <?php foreach($diaryData as $column): ?>
         <tr>
-            <td><?php echo $diary->escape($column['date']) ?></td>
+            <td><?php echo $diary->escape(date('Y-m-j', $column['id'])) ?></td>
             <td><?php echo $diary->escape($column['title']) ?></td>
             <td><?php echo $diary->starReview($column["review"]) ?></td>
+            <td>(<?php echo $diary->escape($column['date']) ?>)</td>
             <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
             <td><a href="/update.php?id=<?php echo $column["id"] ?>">編集</a></td>
             <td><a href="/delete.php?id=<?php echo $column["id"] ?>">削除</a></td>
