@@ -31,7 +31,7 @@
             </ul>
         </nav>
     </header>
-    <h2>日記一覧</h2>
+    <h2 class="index">日記一覧</h2>
     <table class="allview">
         <tr>
             <th>日付</th>

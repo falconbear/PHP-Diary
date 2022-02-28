@@ -34,9 +34,7 @@ th:nth-of-type(1), td:nth-of-type(1) {
 th:nth-of-type(7), td:nth-of-type(7) {
     color: #7D84B2;
 }
-/* .toDiary{
-    text-align: center;
-} */
+
 
 .navbar {
     margin: 0px;
@@ -104,11 +102,12 @@ h1 {
     color: #313638;
 }
 
-h2 {
+.index {
     color: #313638;
     margin: 30px;
     padding-left: 50px;
 }
+
 .allview {
     border-spacing: 20px 10px;
 }
@@ -134,9 +133,34 @@ h2 {
     transition    : .3s;         /* なめらか変化 */
     box-shadow    : 2px 2px 3px #666666;  /* 影の設定 */
     border        : 2px solid #E8E9EB;    /* 枠の指定 */
-  }
+}
   .button:hover {
     box-shadow    : none;        /* カーソル時の影消去 */
     color         : #297373;     /* 背景色     */
     background    : #b3b4b6;     /* 文字色     */
-  }
+}
+
+.input dt, .input dd {
+    color:#313638;
+    padding-left: 50px;
+    padding-top: 30px;
+}
+
+.detail {
+    color:#313638;
+    padding-left: 50px;
+    padding-top: 30px;
+}
+.detail h2 {
+    color: #313638;
+}
+.detail h3 {
+    color: #313638;
+    font-size: 16pt;
+}
+
+#input {
+    margin-left: 50px;
+    padding       : 5px 5px;
+    font-size     : 18pt;
+}

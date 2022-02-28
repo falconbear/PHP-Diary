@@ -28,7 +28,7 @@
     </header>
 <form action="diary_create.php" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>" >
-    <dl>
+    <dl class="input">
         <dt>タイトル</dt>
         <dd><input type="text" name="title" class="title"></dd>
         <dt>今日の気分</dt>
@@ -43,8 +43,9 @@
         <dt>今日の出来事</dt>
         <dd><textarea name="content" cols="40" rows="10" class="textarea"></textarea></dd>
     </dl>
-    <input type="submit" value="記録" class="button">
+    <br>
+    <br>
+    <input type="submit" value="記録" class="button" id="input">
     </form>
-    <p><a href="/makeCalender.php">戻る</a></p>
 </body>
 </html>
