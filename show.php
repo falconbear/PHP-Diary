@@ -5,20 +5,6 @@
     $diary = new Diary();
     // 取得したデータの表示
     $diaryData = $diary->getAll();
-
-    echo strtotime('2022-02-01 0:00:00');
-    echo "\n";
-    echo strtotime('2022-02-01 12:00:00');
-    echo "\n";
-    echo strtotime('2022-02-01');
-    echo "\n";
-    echo strtotime('2022-02-03');
-    echo "\n";
-    echo strtotime('2022-02-28');
-    echo "\n";
-    echo strtotime('2022-03-01');
-    echo "\n";
-    echo strtotime('2022-02');
 ?>
 
 <!DOCTYPE html>

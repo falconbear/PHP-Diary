@@ -10,4 +10,4 @@
     $diary->diaryCreate($diaries);
     
 ?>
-<p><a href="/index.php">戻る</a></p>
+<p><a href="/makeCalender.php">戻る</a></p>

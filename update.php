@@ -41,6 +41,6 @@
     </dl>
     <input type="submit" value="記録">
     </form>
-    <p><a href="/index.php">戻る</a></p>
+    <p><a href="/makeCalender.php">戻る</a></p>
 </body>
 </html>

@@ -57,16 +57,19 @@
                     <td></td>
                 <?php endfor ?>
                 <?php for ($day = 1; $day <= $day_count; $day++, $youbi++): ?>
-                    <?php $date = $ym . '-' . $day; ?>
+                    <?php
+                        $date = $ym . '-' . $day;
+                        $id = strtotime($date);
+                    ?>
                     <td <?php if($date === $today) echo 'class="today"' ?>>
                         <?php echo $day ?><br>
-                        <?php $result = $diary->getById(strtotime($ym.'-'.$day)); ?>
+                        <?php $result = $diary->getById($id) ?>
                         <?php if(!$result): ?>
-                            <a href="/input.php?id=<?php echo strtotime($ym.'-'.$day) ?>">新規作成</a>
-                            <!-- <form action="/input.php" method="post">
-                                <input type="hidden" name="id" value="" >
+                            <!-- <a href="/input.php?id=">新規作成</a> -->
+                            <form action="/input.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $id ?>" >
                                 <input type="submit" value="新規作成">
-                            </form> -->
+                            </form>
                         <?php else: ?>
                             <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">日記を見る</a>
                         <?php endif ?>
