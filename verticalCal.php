@@ -70,7 +70,7 @@
                                     <li class="no-nikki">
                                         <form action="/input.php" method="POST">
                                             <input type="hidden" name="id" value="<?php echo $id ?>" >
-                                            <input type="submit" value="新規作成">
+                                            <input type="submit" value="新規作成" class="button">
                                         </form>
                                     </li>
                                 <?php else: ?>

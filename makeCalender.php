@@ -67,7 +67,7 @@
                             <?php if(!$result): ?>
                                 <form action="/input.php" method="POST">
                                     <input type="hidden" name="id" value="<?php echo $id ?>" >
-                                    <input type="submit" value="新規作成">
+                                    <input type="submit" value="新規作成" class="button">
                                 </form>
                             <?php else: ?>
                                 <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">日記を見る</a>
