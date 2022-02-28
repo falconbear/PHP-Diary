@@ -95,10 +95,5 @@
         public function escape($v){ 
             return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
         }
-        /* brタグの有効化 */
-        public function brToTag($v){
-            /* エスケープされた<br>を戻す */
-            return str_replace('&lt;br&gt;','<br>',$v);
-        }
     }
 ?>

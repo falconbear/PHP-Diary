@@ -1,26 +1,166 @@
+body {
+    background-color: #edeff1;
+}
 .container{
     font-family: 'Montserrat', sans-serif;
     margin-top: 80px;
 }
 a {
     text-decoration: none;
+    color: #297373;
 }
-th {
+
+.varCal tr {
+    height: 30px;
+}
+
+.container th {
     height: 30px;
     text-align: center;
 }
-td {
+.container td {
     height: 100px;
 }
+.linkbutton {
+    text-align: center;
+}
+
 .today {
-    background: orange !important;
+    background: #F09D51 !important;
 }
 th:nth-of-type(1), td:nth-of-type(1) {
-    color: red;
+    color: #F06543;
 }
 th:nth-of-type(7), td:nth-of-type(7) {
-    color: blue;
+    color: #7D84B2;
 }
-.toDiary{
+
+
+.navbar {
+    margin: 0px;
+    height: 120px;
+    width: 100vw;
+    background-color: #E0DFD5;
+}
+.navbar ul {
+    list-style: none;
+    text-align: right;
+    margin: 0;
+    padding: 10px 30px;
+}
+.link li {
+    display: inline;
+    margin-right: 15px;
+}
+.link li a {
+    text-decoration: none;
+    color: #297373;
+}
+.link li a:hover {
+    text-decoration: underline;
+}
+.headTitle {
+    margin-left: 120px;
+    padding: 20px 0;
+    columns: #297373;
+}
+
+.sunday {
+    color: #F06543;
+}
+.saturday {
+    color: #7D84B2;
+}
+.weekday {
+    color: #313638;
+}
+.youbi {
+    font-size: 12px;
+}
+#caldom {
+    width: 100px;
+}
+.nikkidom li {
+    display: inline-block;
+    margin-right: 15px;
+}
+.nonikki {
     text-align: center;
+}
+.nikki-title {
+    width: 700px;
+}
+.nikki-review {
+    width: 100px;
+}
+
+.mb-5 {
+    color: #297373;
+}
+
+h1 {
+    color: #313638;
+}
+
+.index {
+    color: #313638;
+    margin: 30px;
+    padding-left: 50px;
+}
+
+.allview {
+    border-spacing: 20px 10px;
+}
+.allview tbody tr td, .allview tbody tr th {
+    color:#313638;
+    padding-left: 50px;
+    padding-top: 30px;
+}
+.allview tr td a {
+    color: #297373;
+}
+
+.button {
+    display       : inline-block;
+    border-radius : 5%;          /* 角丸       */
+    font-size     : 10pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 3px 3px;   /* 余白       */
+    background    : #E8E9EB;     /* 背景色     */
+    color         : #297373;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    box-shadow    : 2px 2px 3px #666666;  /* 影の設定 */
+    border        : 2px solid #E8E9EB;    /* 枠の指定 */
+}
+  .button:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    color         : #297373;     /* 背景色     */
+    background    : #b3b4b6;     /* 文字色     */
+}
+
+.input dt, .input dd {
+    color:#313638;
+    padding-left: 50px;
+    padding-top: 30px;
+}
+
+.detail {
+    color:#313638;
+    padding-left: 50px;
+    padding-top: 30px;
+}
+.detail h2 {
+    color: #313638;
+}
+.detail h3 {
+    color: #313638;
+    font-size: 16pt;
+}
+
+#input {
+    margin-left: 50px;
+    padding       : 5px 5px;
+    font-size     : 18pt;
 }
