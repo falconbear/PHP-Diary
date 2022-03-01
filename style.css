@@ -136,8 +136,8 @@ h1 {
 }
   .button:hover {
     box-shadow    : none;        /* カーソル時の影消去 */
-    color         : #297373;     /* 背景色     */
-    background    : #b3b4b6;     /* 文字色     */
+    color         : #297373;     /* 文字色     */
+    background    : #b3b4b6;     /* 背景色     */
 }
 
 .input dt, .input dd {
