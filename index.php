@@ -70,7 +70,7 @@
                                     <input type="submit" value="新規作成" class="button">
                                 </form>
                             <?php else: ?>
-                                <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">日記を見る</a>
+                                <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">開く</a>
                             <?php endif ?>
                         </div>
                     </td>
