@@ -1,15 +1,15 @@
 <?php
     require_once('diary.php');
-    require_once('calender.php');
+    require_once('calendar.php');
 
-    $calender = new Calender();
+    $calendar = new Calendar();
     $diary = new Diary();
 
     date_default_timezone_set('Asia/Tokyo');
 
-    $ym = $calender->setYm();
+    $ym = $calendar->setYm();
 
-    list('calenderTitle' => $calender_title, 'prevMonth' => $prev, 'nextMonth' => $next, 'dayCount' => $day_count, '1stYoubi' => $youbi) = $calender->getMonthData($ym);
+    list('calendarTitle' => $calendar_title, 'prevMonth' => $prev, 'nextMonth' => $next, 'dayCount' => $day_count, '1stYoubi' => $youbi) = $calendar->getMonthData($ym);
 
     // 今日の日付 フォーマット　例）2021-06-3
     $today = date('Y-m-j');
@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <title>Calender</title>
+    <title>Calendar</title>
 </head>
 <body>
     <header>
@@ -40,7 +40,7 @@
         </nav>
     </header>
     <div class="container">
-    <h3 class="mb-5"><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $calender_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
+    <h3 class="mb-5"><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $calendar_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
         <table class="table table-bordered">
             <tr>
                 <th>日</th>

@@ -1,5 +1,5 @@
 <?php
-    Class Calender{
+    Class Calendar{
         // タイムゾーンを設定
 
 
@@ -18,7 +18,7 @@
             // タイムスタンプを作成し、フォーマットをチェックする
             $timestamp = strtotime($ym . '-01');
             // カレンダーのタイトルを作成　例）2021年6月
-            $calender_title = date('Y年n月', $timestamp);
+            $calendar_title = date('Y年n月', $timestamp);
 
             // タイムスタンプが空の時は現在のタイムスタンプを設定
             if ($timestamp === false) {
@@ -38,7 +38,7 @@
             $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
 
             $month_data = [
-                'calenderTitle' => $calender_title,
+                'calendarTitle' => $calendar_title,
                 'prevMonth' => $prev,
                 'nextMonth' => $next,
                 'dayCount' => $day_count,
