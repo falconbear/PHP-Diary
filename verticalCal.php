@@ -32,10 +32,10 @@
         <nav class="navbar">
             <h1 class="headTitle">カレンダイアリー</h1>
             <ul class="link">
-                <li><a href="/index.php">日記一覧</a></li>
-                <li><a href="/makeCalender.php">カレンダー</a></li>
-                <li><a href="#vision">習慣登録</a></li>
-                <li><a href="#contact">習慣ログ</a></li>
+                <li><a href="/list.php">日記一覧</a></li>
+                <li><a href="/index.php">カレンダー</a></li>
+                <!-- <li><a href="#vision">習慣登録</a></li>
+                <li><a href="#contact">習慣ログ</a></li> -->
             </ul>
         </nav>
     </header>

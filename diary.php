@@ -37,8 +37,7 @@
                 $stmt->bindValue(':content', $diaries['content'], PDO::PARAM_STR);
                 $stmt->execute();
                 $dbh->commit();
-    
-                echo '日記を投稿しました!';
+                
             }catch(PDOException $e){
                 $dbh->rollback();
                 exit($e);
@@ -83,8 +82,7 @@
                 $stmt->bindValue(':id', $diaries['id'], PDO::PARAM_INT);
                 $stmt->execute();
                 $dbh->commit();
-    
-                echo '日記を更新しました!';
+
             }catch(PDOException $e){
                 $dbh->rollback();
                 exit($e);

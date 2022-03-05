@@ -21,20 +21,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <title>Calender</title>
+    <title>作成</title>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <h1 class="headTitle">カレンダイアリー</h1>
             <ul class="link">
-                <li><a href="/index.php">日記一覧</a></li>
-                <li><a href="/makeCalender.php">カレンダー</a></li>
-                <li><a href="#vision">習慣登録</a></li>
-                <li><a href="#contact">習慣ログ</a></li>
+                <li><a href="/list.php">日記一覧</a></li>
+                <li><a href="/index.php">カレンダー</a></li>
+                <!-- <li><a href="#vision">習慣登録</a></li>
+                <li><a href="#contact">習慣ログ</a></li> -->
             </ul>
         </nav>
     </header>
-    <p><a href="/makeCalender.php">戻る</a></p>
+    <div>
+        <p>日記を作成しました！</p><br>
+        <p><a href="/index.php">戻る</a></p>
+    </div>
 </body>
 </html>

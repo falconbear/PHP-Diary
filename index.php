@@ -1,13 +1,21 @@
 <?php
     require_once('diary.php');
-    ini_set('display_errors', "on");
+    require_once('calender.php');
 
+    $calender = new Calender();
     $diary = new Diary();
-    // 取得したデータの表示
-    $diaryData = $diary->getAll();
-?>
 
+    date_default_timezone_set('Asia/Tokyo');
+
+    $ym = $calender->setYm();
+
+    list('calenderTitle' => $calender_title, 'prevMonth' => $prev, 'nextMonth' => $next, 'dayCount' => $day_count, '1stYoubi' => $youbi) = $calender->getMonthData($ym);
+
+    // 今日の日付 フォーマット　例）2021-06-3
+    $today = date('Y-m-j');
+?>
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,39 +25,64 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <title>日記一覧</title>
+    <title>Calender</title>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <h1 class="headTitle">カレンダイアリー</h1>
             <ul class="link">
-                <li><a href="/index.php">日記一覧</a></li>
-                <li><a href="/makeCalender.php">カレンダー</a></li>
-                <li><a href="#vision">習慣登録</a></li>
-                <li><a href="#contact">習慣ログ</a></li>
+                <li><a href="/list.php">日記一覧</a></li>
+                <li><a href="/verticalCal.php">縦型カレンダー</a></li>
+                <!-- <li><a href="#vision">習慣登録</a></li>
+                <li><a href="#contact">習慣ログ</a></li> -->
             </ul>
         </nav>
     </header>
-    <h2 class="index">日記一覧</h2>
-    <table class="allview">
-        <tr>
-            <th>日付</th>
-            <th>タイトル</th>
-            <th>評価</th>
-            <th>最終更新日</th>
-        </tr>
-        <?php foreach($diaryData as $column): ?>
-        <tr>
-            <td><?php echo $diary->escape(date('Y-m-j', $column['id'])) ?></td>
-            <td><?php echo $diary->escape($column['title']) ?></td>
-            <td><?php echo $diary->starReview($column["review"]) ?></td>
-            <td>(<?php echo $diary->escape($column['date']) ?>)</td>
-            <td><a href="/detail.php?id=<?php echo $column["id"] ?>">詳細</a></td>
-            <td><a href="/update.php?id=<?php echo $column["id"] ?>">編集</a></td>
-            <td><a href="/delete.php?id=<?php echo $column["id"] ?>">削除</a></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+    <div class="container">
+    <h3 class="mb-5"><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $calender_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
+        <table class="table table-bordered">
+            <tr>
+                <th>日</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+            </tr>
+            <tr>
+                <?php for ($i = 0; $i < $youbi; $i++): ?>
+                    <td></td>
+                <?php endfor ?>
+                <?php for ($day = 1; $day <= $day_count; $day++, $youbi++): ?>
+                    <?php
+                        $date = $ym . '-' . $day;
+                        $id = strtotime($date);
+                    ?>
+                    <td <?php if($date === $today) echo 'class="today"' ?>>
+                            <?php echo $day ?><br><br>
+                        <?php $result = $diary->getById($id) ?>
+                        <div class="linkbutton">
+                            <?php if(!$result): ?>
+                                <form action="/input.php" method="POST">
+                                    <input type="hidden" name="id" value="<?php echo $id ?>" >
+                                    <input type="submit" value="新規作成" class="button">
+                                </form>
+                            <?php else: ?>
+                                <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">日記を見る</a>
+                            <?php endif ?>
+                        </div>
+                    </td>
+                    <?php if($youbi % 7 == 6): ?>
+                        </tr><tr>
+                    <?php endif ?>
+                <?php endfor ?>
+                <?php for($j = 0; $j < (6 - ($youbi - 1) % 7); $j++): ?>
+                    <td></td>
+                <?php endfor ?>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

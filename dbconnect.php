@@ -79,7 +79,6 @@
         
             // SQL実行
             $stmt->execute();
-            echo 'ブログを削除しました';
             return $result;
         }
     }
