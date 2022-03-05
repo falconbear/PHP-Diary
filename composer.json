@@ -1,6 +1,6 @@
 {
     "require": {
-      "php": "~7.421",
+      "php": "7.1.33",
       "ext-mbstring": "*"
     }
  }
