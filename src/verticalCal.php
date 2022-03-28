@@ -68,10 +68,7 @@
                             <ul class="nikkidom">
                                 <?php if(!$result): ?>
                                     <li class="no-nikki">
-                                        <form action="/input.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $id ?>" >
-                                            <input type="submit" value="新規作成" class="button">
-                                        </form>
+                                        <a href="/input.php?id=<?php echo $id ?>">新規作成</a>
                                     </li>
                                 <?php else: ?>
                                     <li class="nikki-title"><?php echo $diary->escape($result['title']) ?></li>

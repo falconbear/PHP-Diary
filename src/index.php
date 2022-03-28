@@ -41,15 +41,15 @@
     </header>
     <div class="container">
     <h3 class="mb-5"><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $calendar_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
-        <table class="table table-bordered">
+        <table class="table table-bordered thead-light" id="cal">
             <tr>
-                <th>日</th>
-                <th>月</th>
-                <th>火</th>
-                <th>水</th>
-                <th>木</th>
-                <th>金</th>
-                <th>土</th>
+                <th>SUN</th>
+                <th>MON</th>
+                <th>TUE</th>
+                <th>WED</th>
+                <th>THU</th>
+                <th>FRI</th>
+                <th>SAT</th>
             </tr>
             <tr>
                 <?php for ($i = 0; $i < $youbi; $i++): ?>
@@ -61,14 +61,11 @@
                         $id = strtotime($date);
                     ?>
                     <td <?php if($date === $today) echo 'class="today"' ?>>
-                            <?php echo $day ?><br><br>
+                            <?php echo $day ?>
                         <?php $result = $diary->getById($id) ?>
                         <div class="linkbutton">
                             <?php if(!$result): ?>
-                                <form action="/input.php" method="POST">
-                                    <input type="hidden" name="id" value="<?php echo $id ?>" >
-                                    <input type="submit" value="新規作成" class="button">
-                                </form>
+                                <a href="/input.php?id=<?php echo $id ?>" class="widelink">新規作成</a>
                             <?php else: ?>
                                 <a href="/detail.php?id=<?php echo strtotime($ym.'-'.$day); ?>">開く</a>
                             <?php endif ?>

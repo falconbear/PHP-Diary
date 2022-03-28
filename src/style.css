@@ -21,8 +21,10 @@ a {
 .container td {
     height: 100px;
 }
-.linkbutton {
+.linkbutton a {
     text-align: center;
+    display: block;       /* リンクをブロックレベル化して表示 */
+    padding: 0.6em 1em;   /* 内側の余白量を上下に0.6文字分＆左右に1文字分にする */
 }
 
 .today {
@@ -134,7 +136,7 @@ h1 {
     box-shadow    : 2px 2px 3px #666666;  /* 影の設定 */
     border        : 2px solid #E8E9EB;    /* 枠の指定 */
 }
-  .button:hover {
+.button:hover {
     box-shadow    : none;        /* カーソル時の影消去 */
     color         : #297373;     /* 文字色     */
     background    : #b3b4b6;     /* 背景色     */
