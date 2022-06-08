@@ -1,5 +1,5 @@
 <?php
-require_once '../env.php';
+require_once './env.php';
 
 // データベース接続
 function connect(){
