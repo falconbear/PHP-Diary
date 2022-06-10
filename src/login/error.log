@@ -1,0 +1,34 @@
+PDOException: SQLSTATE[HY000] [1049] Unknown database 'usertable' in /Users/sakuma/Desktop/Programming/PHP-app/src/login/dbconnect.php:17
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/dbconnect.php(17): PDO->__construct('mysql:host=loca...', 'sakuma', 'yusuke64', Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(25): connect()
+#2 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#3 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php:26
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(26): PDOStatement->execute(Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#2 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php:26
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(26): PDOStatement->execute(Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#2 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php:26
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(26): PDOStatement->execute(Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#2 {main}PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null in /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php:26
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(26): PDOStatement->execute(Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#2 {main}PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null in /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php:26
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(26): PDOStatement->execute(Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#2 {main}PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null in /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php:26
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(26): PDOStatement->execute(Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#2 {main}PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null in /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php:26
+Stack trace:
+#0 /Users/sakuma/Desktop/Programming/PHP-app/src/login/classes/UserLogic.php(26): PDOStatement->execute(Array)
+#1 /Users/sakuma/Desktop/Programming/PHP-app/src/login/public/register.php(35): UserLogic::createUser(Array)
+#2 {main}

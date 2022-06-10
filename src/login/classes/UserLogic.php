@@ -17,7 +17,7 @@ class UserLogic
 
     // ユーザデータを配列に入れる
     $arr = [];
-    $arr[] = str_repeat('あ', '64');
+    $arr[] = $userData['username'];
     $arr[] = $userData['email'];
     $arr[] = password_hash($userData['password'], PASSWORD_DEFAULT);
 

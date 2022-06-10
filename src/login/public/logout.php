@@ -27,6 +27,6 @@ UserLogic::logout();
 <body>
 <h2>ログアウト完了</h2>
 <p>ログアウトしました！</p>
-<a href="login_form.php">ログイン画面へ</a>
+<a href="./login_form.php">ログイン画面へ</a>
 </body>
 </html>
